@@ -17,24 +17,25 @@
         <!-- form for character selection prompt -->
 
         <div id="form1">
+            <p style="font-weight: bold; text-decoration: underline;">Password includes:</p>
             <label for="lowercase-chars">Lowercase characters (a b c d)</label>
-            <input type="checkbox" name="lowercase-chars"><br>
+            <input type="checkbox" name="lowercase-chars" id="lowercase-chars"><br>
             <label for="uppercase-chars">Uppercase characters (A B C D)</label>
-            <input type="checkbox" name="uppercase-chars"><br>
+            <input type="checkbox" name="uppercase-chars" id="uppercase-chars"><br>
             <label for="numerical-chars">Numbers (1 2 3 4)</label>
-            <input type="checkbox" name="numerical-chars"><br>
+            <input type="checkbox" name="numerical-chars" id="numerical-chars"><br>
             <label for="special-chars">Special characters (! # $ % &)</label>
-            <input type="checkbox" name="special-chars"><br><br>
+            <input type="checkbox" name="special-chars" id="special-chars"><br><br>
             <button id="formsubmit" onclick="selectLength()">Submit</button>
         </div>
 
         <!-- form for password character length input -->
 
         <div id="form2">
+            <p style="font-weight: bold; text-decoration: underline;">Select length:</p>
             <label for="char-length">Character length:</label>
-            <input type="text" name="char-length"><br><br>
-
-            <button id="charsubmit" onclick="generatePassword()">Submit</button>
+            <input type="text" name="char-length" id="char-length"><br><br>
+            <button id="charsubmit" onclick="setLength()">Submit</button>
         </div>
 
         <div class="card-header">
