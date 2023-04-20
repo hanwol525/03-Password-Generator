@@ -8,6 +8,7 @@ https://stackoverflow.com/questions/9887360/how-can-i-check-if-a-checkbox-is-che
 
 
 WHAT I DID TODAY:
-- added a function to check if the checkboxes were checked
-- set the password length function to maybe be able to be some kind of constraint
-- tried and failed to do smth w a for loop for creating the pw based on checked character types
+- cried
+- made an alert for if people don't input any characters
+- converted the character lists into arrays
+- wrote the generate password function (i liked mine better)
