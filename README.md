@@ -1,6 +1,7 @@
 # 03-Password-Generator
 
 ## Project Description
+<a href="https://hanwol525.github.io/03-Password-Generator">Deployed page</a>
 
 This is a refactor of existing code to create a password generator. The generator allows users to configure password characters and input a length between 8 and 128 characters; a password meeting these criteria will then display in an alert.
 
