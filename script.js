@@ -3,10 +3,34 @@
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
+// define character arrays as variables
+var lowercaseChars = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var uppercaseChars = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+var numericalChars = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+var specialChars = ["'", '"', "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "+", "=", "[", "]", "{", "}", "|", ",", ".", "/", ":", ";", "<", ">", "^", "`", "~"];
+
 // pull up the character selection prompt
 function selectCharacter() {
     document.getElementById("form1").style.display = "block";
     document.getElementById("form2").style.display = "none";
+    return;
+}
+
+// check for selected password characters
+function setCharacter() {
+var lowercaseBox = document.getElementById("lowercase-chars").checked;
+var uppercaseBox = document.getElementById("uppercase-chars").checked;
+var numericalBox = document.getElementById("numerical-chars").checked;
+var specialBox = document.getElementById("special-chars").checked;
+
+    if (!lowercaseBox && !uppercaseBox && !numericalBox && !specialBox){
+        alert("Please select at least one type of character.");
+        selectCharacter();
+    }
+
+    if (lowercaseBox || uppercaseBox || numericalBox || specialBox) {
+        selectLength();
+    }
     return;
 }
 
@@ -22,70 +46,55 @@ function setLength() {
     document.getElementById("form2").style.display = "none";
     var passwordLength = document.getElementById("char-length").value;
     
-    if (8 > passwordLength && passwordLength > 1 || passwordLength > 128) {
+    if (7 >= passwordLength && passwordLength > 0 || passwordLength >= 129 || passwordLength == "") {
         alert("Please input a password length between 8 and 128 characters");
         selectLength();
-    } else if (128 > passwordLength && passwordLength > 8) {
-        //generate pw fxn
+    } else if (128 >= passwordLength && passwordLength >= 8) {
+        generatePassword();
     }
+    return;
 }
 
-// redefining pw length globally
-var passwordLength = document.getElementById("char-length").value;
+// function to generate the password
+function generatePassword(){
 
-// defining character sets as variables
-var lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
-var uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var numericalChars = "1234567890";
-var specialChars = "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
+    // variables for checked checkboxes and a blank array
 
-// functions to randomize characters (use in for-loop later?)
-function yesLower() {
-    var yesLower = lowercaseChars[Math.floor(Math.random() * lowercaseChars.length)];
-    return yesLower;
-}
-
-function yesUpper() {
-    var yesUpper = uppercaseChars[Math.floor(Math.random() * uppercaseChars.length)];
-    return yesUpper;
-}
-
-function yesNumber() {
-    var yesNumber = numericalChars[Math.floor(Math.random() * numericalChars.length)];
-    return yesNumber;
-}
-
-function yesSpecial() {
-    var yesSpecial = specialChars[Math.floor(Math.random() * specialChars.length)];
-    return yesSpecial;
-}
-
-function setCharacter() {
     var lowercaseBox = document.getElementById("lowercase-chars").checked;
     var uppercaseBox = document.getElementById("uppercase-chars").checked;
     var numericalBox = document.getElementById("numerical-chars").checked;
     var specialBox = document.getElementById("special-chars").checked;
 
-    // TO DO: create empty list and fill up by appending w/ a for loop
-    // look up "flatten functions"
+    var passArray = [];
 
-    // if each thing is checked, then use those type of characters in the pw
-    // i have no idea how to do this? i think maybe setting the variables to -1-
-    // -2- include smth about being checked, then use some kinda function to 
-    // -3- add the characters of whatever was selected to the password generator fxn
-    // i think it would be simplest to just have all of the checked characters added -1-
-    // -2- to the password and then slice or smth based on the length the user sets?
+    /* checking to see if checkboxes are checked 
+    and adding the characters to the new passArray */
+
+    if (lowercaseBox === true) {
+        passArray.push(lowercaseChars.join(""));
+    }
+
+    if (uppercaseBox === true) {
+        passArray.push(uppercaseChars.join(""));
+    }
+
+    if (numericalBox === true) {
+        passArray.push(numericalChars.join(""));
+    }
+
+    if (specialBox === true) {
+        passArray.push(specialChars.join(""));
+    }
+
+    var passString = passArray.join("");
+
+    var finalPass = [];
+
+    // starting with i = 1 because the passwords kept coming up 1 character too long
+
+    for (var i = 1; i <= document.getElementById("char-length").value; i++) {
+       finalPass.push(passString[Math.floor(Math.random() * passString.length)]);
+    }
+
+    alert("Your new password is: " + finalPass.join("") + ". Click 'OK' to return to the generator.");
 }
-
-
-// Write password to the #password input
-// function writePassword() {
-  // var password = generatePassword();
-  //var passwordText = document.querySelector("#password");
-
-    // passwordText.value = password;
-//}
-
-// Add event listener to generate button
-// generateBtn.addEventListener("click", writePassword);
-
